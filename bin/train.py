@@ -362,19 +362,12 @@ trainer = pl.Trainer(
     limit_test_batches=args.limit_train_batches,
 )
 
-if args.load_model_ckpt:
-    lightning_module = AutoRegressiveLightning.load_from_checkpoint(
-        args.load_model_ckpt, hparams=hp
-    )
-else:
-    lightning_module = AutoRegressiveLightning(hp)
-
-
 # Train model
 print("Starting training !")
 trainer.fit(
-    model=lightning_module,
+    model=AutoRegressiveLightning(hp),
     datamodule=dm,
+    ckpt_path=args.load_model_ckpt
 )
 
 if not args.no_log:
