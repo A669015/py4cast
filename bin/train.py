@@ -365,9 +365,7 @@ trainer = pl.Trainer(
 # Train model
 print("Starting training !")
 trainer.fit(
-    model=AutoRegressiveLightning(hp),
-    datamodule=dm,
-    ckpt_path=args.load_model_ckpt
+    model=AutoRegressiveLightning(hp), datamodule=dm, ckpt_path=args.load_model_ckpt
 )
 
 if not args.no_log:
